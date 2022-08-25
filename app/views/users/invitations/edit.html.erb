@@ -6,8 +6,11 @@
 
   <% if f.object.class.require_password_on_accepting %>
 
+    <div class="field">
+      <h1>Profile image</h1>
+      <%= f.file_field :image %>
+    </div>
 
-    
 
     <div class="field">
       <%= f.label :password %><br />

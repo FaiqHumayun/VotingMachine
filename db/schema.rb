@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_24_121503) do
+ActiveRecord::Schema.define(version: 2022_08_25_135550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,23 @@ ActiveRecord::Schema.define(version: 2022_08_24_121503) do
   create_table "constituencies", force: :cascade do |t|
     t.string "name", null: false
     t.string "winner_candidate_name", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "cnic", null: false
+    t.string "party_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "constituency_name", null: false
+    t.integer "request_status", default: 0
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "election_start_time"
+    t.datetime "election_end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

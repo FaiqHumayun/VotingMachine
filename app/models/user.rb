@@ -8,5 +8,8 @@ class User < ApplicationRecord
   validates :name, :presence => true
   validates :email, :uniqueness => true, :presence => true
   validates :cnic, :uniqueness => true, :presence => true, :length => { :is => 13 }
-  
+
+
+  has_one_attached :avatar
+  has_one_attached :image
 end

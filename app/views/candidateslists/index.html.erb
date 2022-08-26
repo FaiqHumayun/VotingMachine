@@ -25,7 +25,7 @@
         <td><%= user.party_name%>
         <td><%= image_tag user.avatar, width: "100px" if user.avatar.attached?%>
         <td>
-          <% if current_user.voted == false %>
+          <% if current_user.voted == false && DateTime.now.between?(Schedule.first.election_start_time, Schedule.first.election_end_time)%>
 
 
             <%= button_to "Vote",userlist_path(user),method: :patch%>

@@ -4,14 +4,12 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.all
   end
 
-  def show
-  end
-
   def new
     @schedule = Schedule.new
   end
 
   def edit
+    @schedule = Schedule.find(params[:id])
   end
 
   def create
@@ -24,12 +22,11 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @schedule.update(schedule_params)
-        redirect_to schedules_path
-      else
-        render 'edit'
-      end
+    @schedule = Schedule.find(params[:id])
+    if @schedule.update(schedule_params)
+      redirect_to schedules_path
+    else
+      render 'edit'
     end
   end
 

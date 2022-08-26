@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :voterslists
   resources :requests
   resources :schedules
+  resources :constituencies
   root to: "home#index"
 end
 

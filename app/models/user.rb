@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_one_attached :image
+  belongs_to :constituency
 end

@@ -22,7 +22,7 @@
 
     <div class="field">
       <%= f.label :constituency_name %>
-      <%= f.text_field :constituency_name %>
+      <%= f.select :constituency_name, options_for_select(Constituency.all.pluck(:name)), {prompt: "Select Constituency"} %>
     </div>
 
     <div class="field">

@@ -18,4 +18,4 @@ User.create!([
 
 ])
 
-p "Created #{User.count} users"
+Constituency.create([{name: "NA-201"}, {name: "NA-202"}, {name: "NA-203"}, {name: "NA-204"}, {name: "NA-205"}])

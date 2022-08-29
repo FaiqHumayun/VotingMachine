@@ -3,12 +3,15 @@ class RequestsController < ApplicationController
   def index
     @requests = Request.all
   end
+
   def new
     @request = Request.new
   end
+
   def update
     update_status
   end
+
   def create
     @request = Request.new(request_params)
     if current_user
@@ -24,7 +27,6 @@ class RequestsController < ApplicationController
       render 'new'
     end
   end
-
 
   private
 

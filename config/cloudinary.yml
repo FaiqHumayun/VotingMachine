@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: faiqcloud
+  api_key: '126273764649458'
+  api_secret: TdBiKQpFeEq40Ca5HcS8fH5tZ00
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: faiqcloud
+  api_key: '126273764649458'
+  api_secret: TdBiKQpFeEq40Ca5HcS8fH5tZ00
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: faiqcloud
+  api_key: '126273764649458'
+  api_secret: TdBiKQpFeEq40Ca5HcS8fH5tZ00
+  enhance_image_tag: true
+  static_file_support: false

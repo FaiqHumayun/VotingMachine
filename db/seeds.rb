@@ -8,14 +8,15 @@
 User.destroy_all
 
 User.create!([
-  name: "Faiq Humayun",
-  cnic: "3310067419771",
-  voted: false,
-  constituency_name: "NA-111",
-  user_status: 2,
-  email: "faihumayun46@gmail.com",
-  password: "123456"
+               name: 'Faiq Humayun',
+               cnic: '3310067419771',
+               voted: false,
+               constituency_name: 'NA-201',
+               user_status: 2,
+               email: 'faiqhumayun46@gmail.com',
+               password: '123456',
+               constituency_id: '1'
+             ])
 
-])
-
-Constituency.create([{name: "NA-201"}, {name: "NA-202"}, {name: "NA-203"}, {name: "NA-204"}, {name: "NA-205"}])
+Constituency.create([{ name: 'NA-201' }, { name: 'NA-202' }, { name: 'NA-203' }, { name: 'NA-204' },
+                     { name: 'NA-205' }])

@@ -21,14 +21,20 @@
     </div>
 
     <div class="field">
+      <%= f.label :constituency_id %>
+      <%= f.select :constituency_id, options_for_select(Constituency.all.pluck(:id)), {prompt: "Select Constituency ID"} %>
+    </div>
+
+    <div class="field">
       <%= f.label :constituency_name %>
-      <%= f.select :constituency_name, options_for_select(Constituency.all.pluck(:name)), {prompt: "Select Constituency"} %>
+      <%= f.select :constituency_name, options_for_select(Constituency.all.pluck(:name)), {prompt: "Select corresponding constituency name"} %>
     </div>
 
     <div class="field">
       <%= f.label :user_status %>
-      <%= f.select :user_status, options_for_select(["voter", "candidate"]), {prompt: "Select Status"} %>
+      <%= f.select :user_status, options_for_select(["voter"]), {prompt: "Select Status"} %>
     </div>
+
 
   <% end -%>
 

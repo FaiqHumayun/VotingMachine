@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   resources :requests
   resources :schedules
   resources :constituencies
-  root to: "home#index"
+  root to: 'home#index'
 end
-

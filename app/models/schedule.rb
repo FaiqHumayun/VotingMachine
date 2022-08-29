@@ -1,4 +1,2 @@
 class Schedule < ApplicationRecord
-
-  
 end

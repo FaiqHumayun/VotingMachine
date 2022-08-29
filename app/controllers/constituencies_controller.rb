@@ -4,6 +4,6 @@ class ConstituenciesController < ApplicationController
   end
 
   def show
-    
+    @userlists = User.all.select { |user| user.candidate? && user.constituency_id == constituency.id }
   end
 end

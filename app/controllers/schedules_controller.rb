@@ -1,5 +1,4 @@
 class SchedulesController < ApplicationController
-
   def index
     @schedules = Schedule.all
   end
@@ -31,7 +30,8 @@ class SchedulesController < ApplicationController
   end
 
   private
-    def schedule_params
-      params.require(:schedule).permit(:election_start_time, :election_end_time)
-    end
+
+  def schedule_params
+    params.require(:schedule).permit(:election_start_time, :election_end_time)
+  end
 end

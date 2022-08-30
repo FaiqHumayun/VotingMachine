@@ -1,0 +1,23 @@
+<h1>Constituencies</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @constituencies.each do |constituency| %>
+      <tr>
+        <td><%= constituency.name %></td>
+        <td><%= link_to 'Show', constituency %></td>
+      </tr>
+    <%end%>
+  </tbody>
+
+
+</table>

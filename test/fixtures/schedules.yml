@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  will_start_at: 2022-08-25 18:55:50
+  will_end_at: 2022-08-25 18:55:50
+
+two:
+  will_start_at: 2022-08-25 18:55:50
+  will_end_at: 2022-08-25 18:55:50

@@ -1,0 +1,2 @@
+module CandidateslistsHelper
+end

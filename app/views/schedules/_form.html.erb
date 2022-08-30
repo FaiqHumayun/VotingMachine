@@ -1,0 +1,16 @@
+<%= form_with(model: schedule, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :election_start_time %>
+    <%= form.datetime_field :election_start_time, class:"form-control", placeholder:"Election_Start_Time" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :election_end_time %>
+    <%= form.datetime_field :election_end_time, class:"form-control", placeholder:"Election_End_Time" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

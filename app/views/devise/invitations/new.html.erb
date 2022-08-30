@@ -1,0 +1,33 @@
+<h2><%= t "devise.invitations.new.header" %></h2>
+
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <% resource.class.invite_key_fields.each do |field| -%>
+    <div class="field">
+      <%= f.label field %><br />
+      <%= f.text_field field %>
+    </div>
+  <% end -%>
+
+  <div class="field">
+    <p>hello</p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cnic %>
+    <%= f.text_field :cnic %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_status %>
+    <%= f.select :user_status, options_for_select(["voter", "candidate"]), {prompt: "Select Status"} %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit t("devise.invitations.new.submit_button") %>
+  </div>
+<% end %>

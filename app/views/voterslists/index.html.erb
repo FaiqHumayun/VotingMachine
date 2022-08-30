@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Profile pic</th>
       <th>Name</th>
       <th>Email</th>
       <th colspan="3"></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @userlists.each do |user| %>
       <tr>
+        <td><%= image_tag user.image, width: "100px" if user.image.attached? %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
       </tr>

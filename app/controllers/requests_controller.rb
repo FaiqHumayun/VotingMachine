@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# RequestsController
 class RequestsController < ApplicationController
   include UpdateRequestStatus
+  include RequestsHelper
   def index
     @requests = Request.all
   end
@@ -16,13 +18,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    if current_user
-
-      @request.name = current_user.name
-      @request.cnic = current_user.cnic
-      @request.constituency_name = current_user.constituency_name
-
-    end
+    access_credentials
     if @request.save
       redirect_to candidateslists_path
     else

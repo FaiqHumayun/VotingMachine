@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CreateConstituencies
 class CreateConstituencies < ActiveRecord::Migration[5.2]
   def change
     create_table :constituencies do |t|

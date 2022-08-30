@@ -11,12 +11,11 @@
       </li>
 
       <% if user_signed_in? %>
-          <% if Schedule.any? %>
-            <% if DateTime.now >= Schedule.first.election_end_time %>
+
+          <% if DateTime.now >= Schedule.first.election_end_time%>
             <li class="nav-item">
               <%= link_to 'Dashboard', constituencies_path, class:"nav-link"%>
             </li>
-            <% end %>
           <% end %>
         <% if current_user.admin? %>
           <li class="nav-item">
@@ -35,12 +34,11 @@
           </li>
 
 
-        <% elsif Schedule.any? %>
-          <% if current_user.voter? && DateTime.now <= Schedule.first.election_start_time %>
-            </li>
-              <%= link_to 'New request', new_request_path, class:"nav-link"%>
-            </li>
-          <% end %>
+        <% elsif current_user.voter? && DateTime.now <= Schedule.first.election_start_time%>
+          </li>
+            <%= link_to 'New request', new_request_path, class:"nav-link"%>
+          </li>
+
 
         <% end %>
         <li class="nav-item">

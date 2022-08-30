@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# UpdateRequestStatus
 module UpdateRequestStatus
   extend ActiveSupport::Concern
 

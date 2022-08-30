@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ConstituenciesController
 class ConstituenciesController < ApplicationController
   def index
     @constituencies = Constituency.all

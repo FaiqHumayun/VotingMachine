@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# SchedulesController
 class SchedulesController < ApplicationController
   def index
     @schedules = Schedule.all

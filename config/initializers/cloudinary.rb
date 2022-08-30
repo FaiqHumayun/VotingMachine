@@ -1,6 +1,6 @@
 Cloudinary.config do |config|
-  config.cloud_name = ENV["faiqcloud"]
-  config.api_key = ENV["126273764649458"]
-  config.api_secret =  ENV["TdBiKQpFeEq40Ca5HcS8fH5tZ00"]
+  config.cloud_name = Rails.application.credentials[:cloudinary][:cloud_name]
+  config.api_key = Rails.application.credentials[:cloudinary][:api_key]
+  config.api_secret = Rails.application.credentials[:cloudinary][:api_secret]
   config.secure = true
 end

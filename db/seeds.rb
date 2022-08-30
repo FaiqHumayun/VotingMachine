@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Constituency.destroy_all
+
+Constituency.create([{ name: 'NA-201' }, { name: 'NA-202' }, { name: 'NA-203' }, { name: 'NA-204' },
+  { name: 'NA-205' }])
+
 
 User.create!([
                name: 'Faiq Humayun',
@@ -18,5 +23,4 @@ User.create!([
                constituency_id: '1'
              ])
 
-Constituency.create([{ name: 'NA-201' }, { name: 'NA-202' }, { name: 'NA-203' }, { name: 'NA-204' },
-                     { name: 'NA-205' }])
+

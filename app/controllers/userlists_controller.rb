@@ -4,6 +4,7 @@
 class UserlistsController < ApplicationController
   def index
     @userlists = User.all
+    authorize @userlists
   end
 
   def update

@@ -3,7 +3,7 @@
 # UserlistsController
 class UserlistsController < ApplicationController
   def index
-      @userlists = User.all
+    @userlists = User.all
   end
 
   def update

@@ -3,6 +3,10 @@
 # Application controller
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError do
+    redirect_to root_url
+  end
 
   protected
 

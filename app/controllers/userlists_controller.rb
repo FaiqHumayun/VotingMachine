@@ -3,8 +3,9 @@
 # UserlistsController
 class UserlistsController < ApplicationController
   def index
-    @userlists = User.all
-    authorize @userlists
+    if user.admin? || user.super_admin?
+      @userlists = User.all
+    end
   end
 
   def update

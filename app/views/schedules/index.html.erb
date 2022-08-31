@@ -24,9 +24,3 @@
   </tbody>
 
 </table>
-
-<% if current_user.admin? %>
-  <% if @schedules.all.empty? %>
-    <%= link_to 'New schedule ? ', new_schedule_path , class:"btn btn-primary btn-lg" %>
-  <% end %>
-<% end %>

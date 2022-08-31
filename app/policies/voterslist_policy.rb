@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# VoterslistPolicy
 class VoterslistPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
@@ -5,6 +8,7 @@ class VoterslistPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
   def index?
     user.candidate? || user.super_admin?
   end

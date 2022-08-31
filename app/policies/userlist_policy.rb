@@ -8,6 +8,7 @@ class UserlistPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
   def index?
     user.super_admin? || user.admin?
   end

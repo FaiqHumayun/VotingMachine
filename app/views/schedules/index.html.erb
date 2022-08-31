@@ -14,11 +14,11 @@
       <tr>
         <td><%= schedule.election_start_time %></td>
         <td><%= schedule.election_end_time %></td>
-        <% if current_user.admin? %>
-        <% if @schedules.all.exists? %>
-        <%= link_to 'Edit this schedule ? ', edit_schedule_path(schedule), class:"btn btn-primary btn-lg" %>
-        <% end %>
-        <%end%>
+          <% if current_user.admin? %>
+            <% if @schedules.all.exists? %>
+              <%= link_to 'Edit this schedule ? ', edit_schedule_path(schedule), class:"btn btn-primary btn-lg" %>
+            <% end %>
+          <%end%>
       </tr>
     <% end %>
   </tbody>

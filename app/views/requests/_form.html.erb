@@ -1,15 +1,12 @@
 <%= form_with(model: request, local: true) do |form| %>
-
   <div class="field">
     <%= form.label :party_name %>
     <%= form.text_field :party_name, class:"form-control" %>
   </div>
-
   <div class="field">
-    <%= form.label :avatar %>
+    <h6>Party symbol</h6>
     <%= form.file_field :avatar %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

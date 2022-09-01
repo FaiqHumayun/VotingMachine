@@ -10,4 +10,10 @@ Rails.application.routes.draw do
   resources :schedules
   resources :constituencies
   root to: 'home#index'
+  resources :users do
+    collection do
+      get '/candidates', to: 'users#candidates'
+      get '/voters', to: 'users#voters'
+    end
+  end
 end

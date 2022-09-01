@@ -21,9 +21,9 @@
         <td><%= user.cnic %></td>
         <td><%= user.email %></td>
         <td><%= user.constituency_name %></td>
-        <td><%= user.total_votes_gain unless DateTime.now >= Schedule.first.election_end_time%></td>
+        <td><%= user.total_votes_gain %></td>
         <td><%= user.party_name%></td>
-        <td><%= image_tag user.avatar, width: "100px" unless user.avatar.attached?%></td>
+        <td><%= image_tag user.avatar, width: "100px" if user.avatar.attached?%></td>
       </tr>
     <% end %>
   </tbody>

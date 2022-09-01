@@ -13,8 +13,10 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
+      flash[:alert] = 'Schedule edited'
       redirect_to schedules_path
     else
+      flash[:notice] = @request.error.full_messages.to_sentence
       render 'edit'
     end
   end

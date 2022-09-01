@@ -2,7 +2,6 @@
 
 # RequestsController
 class RequestsController < ApplicationController
-  include UpdateRequestStatus
   include RequestsHelper
   def index
     @requests = Request.all
@@ -14,20 +13,21 @@ class RequestsController < ApplicationController
     authorize @request
   end
 
-  def update
-    authorize @request
-    update_status
-  end
-
   def create
     @request = Request.new(request_params)
     authorize @request
     access_credentials
     if @request.save
-      redirect_to candidateslists_path
+      flash[:alert] = 'Request created'
+      redirect_to root_path
     else
+      flash[:notice] = @request.error.full_messages.to_sentence
       render 'new'
     end
+  end
+
+  def update
+    update_status
   end
 
   private

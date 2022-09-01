@@ -21,6 +21,6 @@ class UsersController < ApplicationController
     @user.increment!(:total_votes_gain) # rubocop:disable Rails/SkipsModelValidations
     current_user.update_attributes(voted: true)
     flash[:alert] = 'Voted'
-    redirect_to root_path
+    redirect_to candidates_users_path
   end
 end

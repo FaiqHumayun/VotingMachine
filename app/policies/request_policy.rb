@@ -20,8 +20,4 @@ class RequestPolicy < ApplicationPolicy
   def create?
     @user.user_status == 'voter' || @user.user_status == 'admin'
   end
-
-  def update?
-    @user.user_status == 'super_admin' || @user.user_status == 'admin'
-  end
 end

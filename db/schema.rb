@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20_220_826_135_230) do
     t.datetime 'created_at', null: false
     t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
     t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness',
-                                                    unique: true
+          unique: true
   end
 
   create_table 'active_storage_blobs', force: :cascade do |t|

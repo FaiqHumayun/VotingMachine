@@ -358,4 +358,7 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.scoped_views = true
+
+  config.mailer_sender = 'faiqhumayun46@mail.com'
+  # config.mailer = 'Devise::Mailer'
 end

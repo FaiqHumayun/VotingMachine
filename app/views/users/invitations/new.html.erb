@@ -2,45 +2,37 @@
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
 
-
   <% resource.class.invite_key_fields.each do |field| -%>
 
 
-    <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="field form-group">
+      <%= f.text_field :name, class:'form-control', placeholder:'Voter Name', required: true%>
     </div>
 
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+    <div class="field form-group">
+      <%= f.email_field :email, class:'form-control', placeholder:'Voter Email', required: true%>
     </div>
 
-    <div class="field">
-      <%= f.label :cnic %>
-      <%= f.text_field :cnic %>
+    <div class="field form-group">
+      <%= f.text_field :cnic, class:'form-control', placeholder:'Voter CNIC', required: true, length: 13%>
     </div>
 
-    <div class="field">
-      <%= f.label :constituency_id %>
-      <%= f.select :constituency_id, options_for_select(Constituency.all.pluck(:id)), {prompt: "Select Constituency ID"} %>
+    <div class="field form-group">
+      <%= f.select :constituency_id, options_for_select(Constituency.all.pluck(:id)), {prompt: "Select Constituency ID"}, class:'form-control', placeholder:'Constituency id', required: true%>
     </div>
 
-    <div class="field">
-      <%= f.label :constituency_name %>
-      <%= f.select :constituency_name, options_for_select(Constituency.all.pluck(:name)), {prompt: "Select corresponding constituency name"} %>
+    <div class="field form-group">
+      <%= f.select :constituency_name, options_for_select(Constituency.all.pluck(:name)), {prompt: "Select corresponding constituency name"}, class:'form-control', placeholder:'Constituency Name', required: true %>
     </div>
 
-    <div class="field">
-      <%= f.label :user_status %>
-      <%= f.select :user_status, options_for_select(["voter"]), {prompt: "Select Status"} %>
+    <div class="field form-group">
+      <%= f.select :user_status, options_for_select(["voter"]), {prompt: "Select Status"}, class:'form-control', placeholder:'Type' %>
     </div>
-
 
   <% end -%>
 
 
   <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
+    <%= f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-success' %>
   </div>
 <% end %>

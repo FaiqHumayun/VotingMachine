@@ -1,11 +1,10 @@
 require:
   - rubocop-performance
   - rubocop-rails
-  - rubocop-rspec # or rubocop-minitest
+  - rubocop-rspec
 
 
 AllCops:
-  # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
   Exclude:

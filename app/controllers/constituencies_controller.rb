@@ -4,6 +4,7 @@
 class ConstituenciesController < ApplicationController
   def index
     @constituencies = Constituency.all
+    authorize @constituencies
   end
 
   def show

@@ -7,11 +7,11 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find_by(id: params[:id])
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find_by(id: params[:id])
     if @schedule.update(schedule_params)
       flash[:alert] = 'Schedule edited'
       redirect_to schedules_path

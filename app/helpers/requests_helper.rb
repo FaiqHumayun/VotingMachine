@@ -9,7 +9,7 @@ module RequestsHelper
   end
 
   def update_status
-    @request = Request.find(params[:id])
+    @request = Request.find_by(id: params[:id])
     @request.update_attributes(request_status: :approved)
     make_candidate
     flash[:alert] = 'Request approved'

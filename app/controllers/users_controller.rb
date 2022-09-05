@@ -2,6 +2,7 @@
 
 # UsersController
 class UsersController < ApplicationController
+  before_action :find_user, only: %i[update]
   def index
     @userlists = User.all
   end
@@ -15,11 +16,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.get_user(params[:id])
     @user.increment!(:total_votes_gain) # rubocop:disable Rails/SkipsModelValidations
     authorize @user
     current_user.update(voted: true)
     flash[:alert] = 'Voted'
     redirect_to candidates_users_path
+  end
+
+  private
+
+  def find_user
+    @user = User.find_by(id: params[:id])
   end
 end

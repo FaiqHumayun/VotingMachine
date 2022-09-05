@@ -14,4 +14,20 @@ class Request < ApplicationRecord
     self.cnic = current_user.cnic
     self.constituency_name = current_user.constituency_name
   end
+
+  def update_status(user)
+    @user = User.find(user.id)
+    update(request_status: :approved)
+    @user.update(party_name: party_name, user_status: :candidate) if @user.user_status == 'voter'
+    @user.update(party_name: party_name, user_status: :super_admin) if @user.user_status == 'admin'
+    attach_avatar
+    true
+  end
+
+  def attach_avatar
+    @user.avatar.purge
+    @user.avatar.attach(avatar)
+    @user.avatar.attach(avatar.blob_id)
+    @user.avatar.attach(avatar_blob)
+  end
 end

@@ -3,6 +3,7 @@
 # RequestsController
 class RequestsController < ApplicationController
   before_action :find_request, only: %i[update]
+  before_action :find_requesting_user, only: %i[update]
   def index
     @requests = Request.all
     authorize @requests
@@ -27,28 +28,12 @@ class RequestsController < ApplicationController
   end
 
   def update
-    update_status
-  end
-
-  def update_status
-    @request.update(request_status: :approved)
-    make_candidate
-    flash[:alert] = 'Request approved'
-    redirect_to requests_path
-  end
-
-  def make_candidate
-    @user = User.get_requesting_user(@request.cnic)
-    @user.update(party_name: @request.party_name, user_status: :candidate) if @user.user_status == 'voter'
-    @user.update(party_name: @request.party_name, user_status: :super_admin) if @user.user_status == 'admin'
-    attach_symbol
-  end
-
-  def attach_symbol
-    @user.avatar.purge
-    @user.avatar.attach(@request.avatar)
-    @user.avatar.attach(@request.avatar.blob_id)
-    @user.avatar.attach(@request.avatar_blob)
+    if @request.update_status(@user)
+      flash[:alert] = 'Request approved'
+      redirect_to requests_path
+    else
+      flash[:notice] = @request.errors.full_messages.to_sentence
+    end
   end
 
   private
@@ -59,5 +44,9 @@ class RequestsController < ApplicationController
 
   def find_request
     @request = Request.find_by(id: params[:id])
+  end
+
+  def find_requesting_user
+    @user = User.find_by(cnic: @request.cnic)
   end
 end

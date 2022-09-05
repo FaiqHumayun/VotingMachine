@@ -7,17 +7,15 @@ class UsersController < ApplicationController
   end
 
   def candidates
-    @userlists = User.all.select do |user|
-      (user.candidate? || user.super_admin?) && user.constituency_id == current_user.constituency_id
-    end
+    @userlists = User.get_candidates_of_that_constituency(current_user.constituency_id)
   end
 
   def voters
-    @userlists = User.all.select { |user| user.constituency_id == current_user.constituency_id }
+    @userlists = User.get_voters_of_that_constituency(current_user.constituency_id)
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.get_user(params[:id])
     @user.increment!(:total_votes_gain) # rubocop:disable Rails/SkipsModelValidations
     authorize @user
     current_user.update(voted: true)

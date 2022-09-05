@@ -2,6 +2,7 @@
 
 # RequestsController
 class RequestsController < ApplicationController
+  before_action :find_request, only: %i[update]
   def index
     @requests = Request.all
     authorize @requests
@@ -30,7 +31,6 @@ class RequestsController < ApplicationController
   end
 
   def update_status
-    @request = Request.get_request(params[:id])
     @request.update(request_status: :approved)
     make_candidate
     flash[:alert] = 'Request approved'
@@ -55,5 +55,9 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:party_name, :avatar)
+  end
+
+  def find_request
+    @request = Request.find_by(id: params[:id])
   end
 end

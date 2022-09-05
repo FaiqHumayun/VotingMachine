@@ -14,6 +14,4 @@ class Request < ApplicationRecord
     self.cnic = current_user.cnic
     self.constituency_name = current_user.constituency_name
   end
-
-  scope :get_request, ->(id) { find_by('id = ?', id) }
 end

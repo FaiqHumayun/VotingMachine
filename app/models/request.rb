@@ -8,4 +8,12 @@ class Request < ApplicationRecord
   validates :avatar, presence: true
   validates :cnic, presence: true, length: { is: 13 }
   enum request_status: { pending: 0, approved: 1, rejected: 2 }
+
+  def access_credentials(current_user)
+    self.name = current_user.name
+    self.cnic = current_user.cnic
+    self.constituency_name = current_user.constituency_name
+  end
+
+  scope :get_request, ->(id) { find_by('id = ?', id) }
 end

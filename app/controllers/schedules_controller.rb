@@ -14,7 +14,7 @@ class SchedulesController < ApplicationController
       flash[:alert] = 'Schedule edited'
       redirect_to schedules_path
     else
-      flash[:notice] = @request.error.full_messages.to_sentence
+      flash[:notice] = @schedule.error.full_messages.to_sentence
       render 'edit'
     end
   end

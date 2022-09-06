@@ -9,7 +9,7 @@ class ConstituenciesController < ApplicationController
   end
 
   def show
-    @userlists = User.get_candidates_of_that_constituency(@constituency.id)
+    @userlists = @constituency.users.where(user_status: [:candidate, :super_admin])
   end
 
   private

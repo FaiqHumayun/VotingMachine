@@ -7,7 +7,7 @@ class Request < ApplicationRecord
   validates :party_name, presence: true
   validates :avatar, presence: true
   validates :cnic, presence: true, length: { is: 13 }
-  enum request_status: { pending: 0, approved: 1, rejected: 2 }
+  enum request_status: { pending: 0, approved: 1 }
 
   def access_credentials(current_user)
     self.name = current_user.name
@@ -16,18 +16,17 @@ class Request < ApplicationRecord
   end
 
   def update_status(user)
-    @user = User.find(user.id)
     update(request_status: :approved)
-    @user.update(party_name: party_name, user_status: :candidate) if @user.user_status == 'voter'
-    @user.update(party_name: party_name, user_status: :super_admin) if @user.user_status == 'admin'
-    attach_avatar
+    user.update(party_name: party_name, user_status: :candidate) if user.voter?
+    user.update(party_name: party_name, user_status: :super_admin) if user.admin?
+    attach_avatar(user)
     true
   end
 
-  def attach_avatar
-    @user.avatar.purge
-    @user.avatar.attach(avatar)
-    @user.avatar.attach(avatar.blob_id)
-    @user.avatar.attach(avatar_blob)
+  def attach_avatar(user)
+    user.avatar.purge
+    user.avatar.attach(avatar)
+    user.avatar.attach(avatar.blob_id)
+    user.avatar.attach(avatar_blob)
   end
 end

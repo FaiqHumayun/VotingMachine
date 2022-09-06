@@ -2,14 +2,19 @@
 
 # ConstituenciesController
 class ConstituenciesController < ApplicationController
+  before_action :find_constituency, only: %i[show]
   def index
     @constituencies = Constituency.all
+    authorize @constituencies
   end
 
   def show
+    @userlists = User.get_candidates_of_that_constituency(@constituency.id)
+  end
+
+  private
+
+  def find_constituency
     @constituency = Constituency.find_by(id: params[:id])
-    @userlists = User.all.select do |user|
-      (user.candidate? || user.super_admin?) && user.constituency_id == @constituency.id
-    end
   end
 end

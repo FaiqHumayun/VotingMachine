@@ -14,4 +14,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :image
   belongs_to :constituency
+
+  scope :get_candidates_of_that_constituency, ->(id) { all.select { |user| (user.candidate? || user.super_admin?) && find_by('constituency_id = ?', id) } }
+  scope :get_voters_of_that_constituency, ->(id) { all.select { |user| (user.candidate? || user.super_admin?) && find_by('constituency_id = ?', id) } }
 end

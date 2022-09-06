@@ -2,7 +2,8 @@
 
 # RequestsController
 class RequestsController < ApplicationController
-  include RequestsHelper
+  before_action :find_request, only: %i[update]
+  before_action :find_requesting_user, only: %i[update]
   def index
     @requests = Request.all
     authorize @requests
@@ -16,8 +17,8 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     authorize @request
-    access_credentials
-    if @request.save
+    @request.access_credentials(current_user)
+    if @request.save!
       flash[:alert] = 'Request created'
       redirect_to root_path
     else
@@ -27,12 +28,25 @@ class RequestsController < ApplicationController
   end
 
   def update
-    update_status
+    if @request.update_status(@user)
+      flash[:alert] = 'Request approved'
+      redirect_to requests_path
+    else
+      flash[:notice] = @request.errors.full_messages.to_sentence
+    end
   end
 
   private
 
   def request_params
     params.require(:request).permit(:party_name, :avatar)
+  end
+
+  def find_request
+    @request = Request.find_by(id: params[:id])
+  end
+
+  def find_requesting_user
+    @user = User.find_by(cnic: @request.cnic)
   end
 end

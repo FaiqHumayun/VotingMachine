@@ -8,12 +8,10 @@ class User < ApplicationRecord
   enum user_status: { voter: 0, candidate: 1, admin: 2, super_admin: 3 }
 
   validates :name, presence: true
-  validates :email, uniqueness: true, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :cnic, presence: true, length: { is: 13 }
 
   has_one_attached :avatar
   has_one_attached :image
   belongs_to :constituency
-
-  scope :get_candidates_of_that_constituency, -> { where(user_status: [:candidate, :super_admin]) }
 end

@@ -9,6 +9,8 @@ class ApplicationPolicy
     @record = record
   end
 
+  def voters?; end
+
   def index?
     false
   end

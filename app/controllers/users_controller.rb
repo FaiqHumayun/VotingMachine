@@ -5,14 +5,16 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[update]
   def index
     @userlists = User.all
+    authorize @userlists
   end
 
   def candidates
-    @userlists = Constituency.find_by(id: current_user.constituency_id).users.get_candidates_of_that_constituency
+    @userlists = Constituency.find_by(id: current_user.constituency_id).users.where(user_status: %i[candidate super_admin])
   end
 
   def voters
     @userlists = Constituency.find_by(id: current_user.constituency_id).users
+    authorize @userlists
   end
 
   def update

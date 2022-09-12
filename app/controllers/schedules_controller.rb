@@ -10,11 +10,12 @@ class SchedulesController < ApplicationController
   def edit; end
 
   def update
+    authorize @schedule
     if @schedule.update(schedule_params)
       flash[:alert] = 'Schedule edited'
       redirect_to schedules_path
     else
-      flash[:notice] = @schedule.error.full_messages.to_sentence
+      flash[:alert] = 'schedule not edited'
       render 'edit'
     end
   end

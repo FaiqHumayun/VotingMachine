@@ -1,0 +1,2 @@
+/home/dev/.vscode/extensions/mateuszdrewniak.ruby-test-runner-0.3.7/print_and_save bundle exec rspec /home/dev/Documents/voting_machine/spec/models/request_spec.rb:27
+

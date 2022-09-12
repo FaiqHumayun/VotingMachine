@@ -18,11 +18,11 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     authorize @request
     @request.access_credentials(current_user)
-    if @request.save!
+    if @request.save
       flash[:alert] = 'Request created'
       redirect_to root_path
     else
-      flash[:notice] = @request.error.full_messages.to_sentence
+      flash[:notice] = 'request not created'
       render 'new'
     end
   end
@@ -32,7 +32,7 @@ class RequestsController < ApplicationController
       flash[:alert] = 'Request approved'
       redirect_to requests_path
     else
-      flash[:notice] = @request.errors.full_messages.to_sentence
+      flash[:notice] = 'invalid request'
     end
   end
 

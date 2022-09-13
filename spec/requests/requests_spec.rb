@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Requests', type: :request do
-  let(:user) { create :user }
+  let(:request) { create :request }
 
   describe 'GET #index' do
     it 'display all requests' do
       create :schedule
+      user = create :user
       sign_in(user)
       user.admin!
       get requests_path
@@ -16,6 +17,7 @@ RSpec.describe 'Requests', type: :request do
 
     it 'fails for unauthorized users' do
       create :schedule
+      user = create :user
       sign_in(user)
       user.voter!
       get requests_path
@@ -26,6 +28,7 @@ RSpec.describe 'Requests', type: :request do
   describe 'GET #new' do
     it 'new request' do
       create :schedule
+      user = create :user
       sign_in(user)
       user.voter!
       get new_request_path
@@ -36,6 +39,7 @@ RSpec.describe 'Requests', type: :request do
   describe 'create#request' do
     it 'creates requests' do
       create :schedule
+      user = create :user
       sign_in(user)
       params = { request: { party_name: Faker::Name.name } }
       post requests_path(params)
@@ -44,6 +48,7 @@ RSpec.describe 'Requests', type: :request do
 
     it 'fails for unauthorized users' do
       create :schedule
+      user = create :user
       sign_in(user)
       user.candidate!
       params = { request: { party_name: Faker::Name.name } }
@@ -53,6 +58,7 @@ RSpec.describe 'Requests', type: :request do
 
     it 'doesnt creates if invalid params' do
       create :schedule
+      user = create :user
       sign_in(user)
       user.voter!
       params = { request: { party_name: '' } }
@@ -63,15 +69,13 @@ RSpec.describe 'Requests', type: :request do
 
   describe 'update#request' do
     it 'updates request' do
-      user = create(:user, cnic: '1122334455667')
-      request = create(:request, cnic: '1122334455667')
+      user = create :user
       patch request_path(request)
       expect(flash[:alert]).to eq('Request approved')
     end
 
     it 'fails updation of request' do
       user = create(:user, cnic: '1122334455637')
-      request = create(:request, cnic: '1122334455667')
       patch request_path(request)
       expect(flash[:notice]).to eq('invalid request')
     end

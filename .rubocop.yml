@@ -15,6 +15,7 @@ AllCops:
     - 'app/helpers/**/*'
     - 'db/**/*'
     - 'config/**/*'
+    - 'spec/rails_helper.rb'
 
 
 Layout/LineLength:
@@ -34,3 +35,6 @@ Lint/AmbiguousBlockAssociation:
 
 Style/Documentation:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 7
